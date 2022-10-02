@@ -8,14 +8,19 @@ public:
     Vector3 position;
     Vector3 acceleration;
     Vector3 velocity;
+    Vector3 force;
+  
 
     Particle();
     ~Particle();
     float damping;
     float mass;
+    float inv_mass;
     float age;
 
     void calculate(float);
+    void Gravity(const Vector3&);
+    void InvMass(float);
     void print0(float);
     void print1();
     friend std::ostream& operator<<(std::ostream& out, Particle& p1) {

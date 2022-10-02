@@ -81,6 +81,6 @@ void accelerateparticles() {
         mpa.InitParticle(y_axis);
     }
     for (int i = 0; i < 100; i++) {
-        mpa.Calculate_mpa(0.01f);
+        mpa.Calculate(0.01f);
     }
 }

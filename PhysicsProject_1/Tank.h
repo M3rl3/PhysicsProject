@@ -13,6 +13,7 @@ public:
     gdp::GameObject* enemy;
     Vector3 position;
     float radius;
+    
     inline const Vector3& GetPosition() const { return position; }
 };
 

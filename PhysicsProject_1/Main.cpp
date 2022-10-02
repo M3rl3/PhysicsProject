@@ -9,8 +9,8 @@
 
 Graphics G;
 const char* Title = "Physics Project";
-const int Width = 640;
-const int Height = 480;
+const int Width = 1366;
+const int Height = 768;
 
 void Update() {
     G.Update();
