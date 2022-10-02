@@ -18,8 +18,9 @@ public:
 
 	~MultiParticleAccelerator();
 
-	void InitParticle(const Vector3&);
+	Particle InitParticle(const Vector3&);
 	void Calculate_mpa(float);
+	void Update(float);
 	float RandNum(float, float);
 
 	Vector3 min_velocity;

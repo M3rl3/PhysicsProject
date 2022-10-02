@@ -23,7 +23,7 @@ void Particle::calculate(float dt) {
    /* velocity = velocity + acceleration * dt;
     velocity = velocity * damping;
     position = position + velocity * dt;*/
-    age = age - dt;
+    //age = age - dt;
 }
 
 void Particle::print0(float dt) {

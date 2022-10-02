@@ -7,62 +7,48 @@ MultiParticleAccelerator::MultiParticleAccelerator() : MultiParticleAccelerator(
 
 MultiParticleAccelerator::MultiParticleAccelerator(const Vector3& position) :
 	min_velocity(Vector3(0.f)),
-	max_velocity(Vector3(0.f, 1.f, 0.f)),
-	min_age(1000.f),
-	max_age(2000.f) 
+	max_velocity(Vector3(0.f, 1.f, 0.f))
 {
 	this->position = position;
 }
 
 MultiParticleAccelerator::~MultiParticleAccelerator() {
-
+	particlebuffer.clear();
+	/*for (int i = 0; i < particlebuffer.size(); i++) {
+		delete particlebuffer[i];
+	}*/
 }
 
 
-void MultiParticleAccelerator::InitParticle(const Vector3& velocity) {
+Particle MultiParticleAccelerator::InitParticle(const Vector3& position) {
+	Particle part;
+	part.position = position;
+	part.acceleration = Vector3(0.f, -9.8f, 0.f); //acceleration due to gravity
+	part.velocity = Vector3(0.f, 1.f, 0.f);
+	part.mass = 0.01f;
+	/*part.velocity.x = RandNum(min_velocity.x, max_velocity.x);
+	part.velocity.y = RandNum(min_velocity.y, max_velocity.y);
+	part.velocity.z = RandNum(min_velocity.z, max_velocity.z);*/
+	particlebuffer.push_back(part);
 	
-	bool created = false;
-	
-	for (int i = 0; i < particlebuffer.size(); i++) {
-		Particle& part = particlebuffer[i];
-		
-		if (part.age <= 0.f) {
-			
-			part.position = this->position;
-			part.velocity = part.position;
-			part.velocity.x = RandNum(min_velocity.x, max_velocity.x);
-			part.velocity.y = RandNum(min_velocity.y, max_velocity.y);
-			part.velocity.z = RandNum(min_velocity.z, max_velocity.z);
-
-
-			int age_difference = max_age - min_age;
-
-			part.age = (min_age + (rand() % age_difference)) / 1000.f;
-
-			std::cout << "\nPatricle: " << i;
-			std::cout << "\nParticle age: " << part.age;
-			std::cout << "\nParticle velocity: " << part.velocity;
-			
-			created = true;
-			break;
-		}
-	}
-
-	if (!created) {
-		std::cout << "\nAborted: Max limit reached." << std::endl;
-		return;
-	}
+	std::cout << "\nParticle velocity: " << part.velocity;
+	std::cout << "\nParticle position: " << part.position;
+	std::cout << "\nParticle acceleration: " << part.acceleration;
+	return part;
 }
 
 void MultiParticleAccelerator::Calculate_mpa(float dt) {
 	for (int i = 0; i < particlebuffer.size(); i++) {
-		Particle& p = particlebuffer[i];
-		if (p.age > 0.f) {
-			p.calculate(dt);
-			/*p.print1();*/
-		}
+		//if (p.velocity.y >= 0) {
+			particlebuffer[i].calculate(dt);
+			
+			//particlebuffer[i].print1();
 	}
 	int breakpoint = 7;
+}
+
+void MultiParticleAccelerator::Update(float dt) {
+
 }
 
 float MultiParticleAccelerator::RandNum(float min, float max) {
