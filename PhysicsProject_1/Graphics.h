@@ -11,6 +11,7 @@
 
 class Graphics {
 	
+	ParticleAccelerator pa;
 	MultiParticleAccelerator mpa;
 	Vector3 target_crosshair;
 	Tank_Ammo tank_ammo;
