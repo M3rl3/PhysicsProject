@@ -5,9 +5,8 @@
 #include <gdp/Engine.h>
 #include <gdp/GameObject.h>
 
-#include "ParticleAccelerator.h"
-#include "MultiParticleAccelerator.h"
 #include "Tank.h"
+#include "ParticleAccelerator.h"
 
 class Graphics {
 	
@@ -18,12 +17,14 @@ class Graphics {
 	Vector3 target_crosshair;
 	Vector3 temp;
 	Tank_Ammo tank_ammo;
-	Tank player_tank;
-	Tank enemy_tank;
-	bool grounded;
+	gdp::GameObject* player_tank;
+	gdp::GameObject* enemy_tank;
+	gdp::GameObject* plane;
+	/*bool grounded;
 	bool gameOver;
-	bool fire;
+	bool fire;*/
 
+	//std::vector < ParticleAccelerator > yes;
 
 public:
 	Graphics();
@@ -34,8 +35,8 @@ public:
 	void Destroy();
 	void GameBegin();
 	float RandGen(float, float);
-	Vector3 AssignRand(Vector3&, Tank);
-	void CheckDist(Tank&, Particle&);
+	gdp::GameObject* AssignRand(gdp::GameObject*);
+	void CheckDist(gdp::GameObject*, Particle*);
 	void TankFire();
-	Vector3 Target(float x, float y, float z);
+	void Target(float x, float y, float z);
 };

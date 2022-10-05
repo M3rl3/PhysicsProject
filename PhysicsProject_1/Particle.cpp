@@ -1,23 +1,33 @@
 #include "Particle.h"
 
-Particle::Particle() {
-    this->position = Vector3(0.f);
+Particle::Particle() : Particle(Vector3()) {
+   /* this->position = Vector3(0.f);
     this->velocity = Vector3(0.f);
     this->acceleration = Vector3(0.f);
     this->force = Vector3(0.f);
-    this->damping = .993f;
+    this->damping = .99f;
+    this->mass = 1.f;
+    this->age = -1.f;*/
+}
+
+Particle::Particle(const Vector3& position) {
+    this->position = position;
+    this->velocity = Vector3(0.f);
+    this->acceleration = Vector3(0.f);
+    this->force = Vector3(0.f);
+    this->damping = .99f;
     this->mass = 1.f;
     this->age = -1.f;
 }
 
 Particle::~Particle() {
-
+    
 }
 
 //Calculate particle position and velocity
 void Particle::calculate(float dt) {
-    /*InvMass(mass);
-    force = acceleration * inv_mass;*/
+    
+    acceleration = force * InvMass(mass);
     velocity.scalevector(acceleration, dt);
     velocity = velocity * damping;
     position.scalevector(velocity, dt);
@@ -28,14 +38,15 @@ void Particle::calculate(float dt) {
     //age = age - dt;
 }
 
-void Particle::print0(float dt) {
-    std::cout << "position = " << position.y << " + " << velocity.y << " * " << dt << "\n";
-    velocity = velocity + acceleration * dt;
-    std::cout << "position = " << position.y << " + " << velocity.y << " * " << dt << "\n";
-    position = position + velocity * dt;
+void Particle::ApplyForce(const Vector3& direction) {
+    force = force + direction;
 }
 
-void Particle::print1() {
+float Particle::InvMass(float mass) {
+    return mass /= 1;
+}
+
+void Particle::print() {
     std::cout << "\nPosition: (" << position.x << ", " << position.y << ", " << position.z << ") " << std::endl;
     std::cout << "\nVelocity: (" << velocity.x << ", " << velocity.y << ", " << velocity.z << ") " << std::endl;
 

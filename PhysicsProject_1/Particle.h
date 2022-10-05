@@ -12,6 +12,7 @@ public:
   
 
     Particle();
+    Particle(const Vector3& position);
     ~Particle();
     float damping;
     float mass;
@@ -19,10 +20,9 @@ public:
     float age;
 
     void calculate(float);
-    void Gravity(const Vector3&);
-    void InvMass(float);
-    void print0(float);
-    void print1();
+    float InvMass(float);
+    void print();
+    void ApplyForce(const Vector3& direction);
     friend std::ostream& operator<<(std::ostream& out, Particle& p1) {
         out << p1.position << p1.velocity;
         return out;

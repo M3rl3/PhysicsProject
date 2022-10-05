@@ -6,13 +6,13 @@
 
 class ParticleAccelerator {
 
-	std::vector<Particle> particles;
+	std::vector<Particle*> particles;
 
 public:
 	ParticleAccelerator();
 	~ParticleAccelerator();
 
-	Particle& InitParticle(const Vector3&);
-	Particle& calculate_pa(float time);
+	Particle* InitParticle(const Vector3&);
+	Particle* calculate_pa(float time);
 
 };
