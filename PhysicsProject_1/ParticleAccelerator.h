@@ -12,7 +12,7 @@ public:
 	ParticleAccelerator();
 	~ParticleAccelerator();
 
-	Particle& initparticle(const Vector3&);
-	void calculate_pa(float time);
+	Particle& InitParticle(const Vector3&);
+	Particle& calculate_pa(float time);
 
 };

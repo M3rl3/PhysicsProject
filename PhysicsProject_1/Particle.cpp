@@ -5,7 +5,7 @@ Particle::Particle() {
     this->velocity = Vector3(0.f);
     this->acceleration = Vector3(0.f);
     this->force = Vector3(0.f);
-    this->damping = .99f;
+    this->damping = .993f;
     this->mass = 1.f;
     this->age = -1.f;
 }

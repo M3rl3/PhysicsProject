@@ -2,7 +2,7 @@
 #include <cmath>
 #include <gdp/Engine.h>
 
-#include"Graphics.h"
+#include "Graphics.h"
 #include "Tank.h"
 #include "ParticleAccelerator.h"
 #include "MultiParticleAccelerator.h"
@@ -17,8 +17,8 @@ void doshit(float x, float y) {
 
     ParticleAccelerator pa;
 
-
-    Particle& p = pa.initparticle(Vector3(0.f, 1.f, 0.f));
+    
+    Particle p = pa.InitParticle(Vector3(0.f, 1.f, 0.f));
     p.velocity = Vector3(x, y, 0.f);
     //p.acceleration = Vector3(0.f, -9.8f, 0.f);
     p.print1();
