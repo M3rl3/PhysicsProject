@@ -2,13 +2,13 @@
 # PhysicsProject
 	Project repository for GDP - 2022. (Physics - INFO-6019)
 	
-    <h3> Build Instructions: <h3 />
+<h3> Build Instructions: <h3 />
     <ul>
       <li> Built in Visual Studio 17 (2022) - Retarget solution if necessary.
       <li> Solution has only one project which is automatically the default project.
     <ul />
 	
-	<h3> Gameplay Instructions: <h3 />
+<h3> Gameplay Instructions: <h3 />
     <ul>
       <li> Initial positions of both tanks are set upon run.
       <li> User can change direction of projectiles fired by pressing 'w', 'a', 's', 'd', 'q', 'e' keys in combination to change values on their respective axes.
