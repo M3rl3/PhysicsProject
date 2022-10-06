@@ -1,4 +1,4 @@
-# PhysicsProject
+# Physics Project
 <?xml version = "1.0" encoding = "UTF-8">
 
 <br/>Project repository for GDP - 2022. (Physics & Simulation - INFO-6019) <br/><br/>
