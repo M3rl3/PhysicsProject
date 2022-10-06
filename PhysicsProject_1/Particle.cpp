@@ -1,13 +1,7 @@
 #include "Particle.h"
 
-Particle::Particle() : Particle(Vector3()) {
-   /* this->position = Vector3(0.f);
-    this->velocity = Vector3(0.f);
-    this->acceleration = Vector3(0.f);
-    this->force = Vector3(0.f);
-    this->damping = .99f;
-    this->mass = 1.f;
-    this->age = -1.f;*/
+Particle::Particle() : Particle(Vector3(0.f)) {
+
 }
 
 Particle::Particle(const Vector3& position) {

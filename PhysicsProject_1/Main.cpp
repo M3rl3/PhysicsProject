@@ -19,6 +19,7 @@ void Update() {
 int main(int argc, char* argv) {
 
     gdp::GDP_Initialize();
+
     gdp::GDP_CreateWindow(Title, Width, Height);
     
     gdp::GDP_UpdateCallback(&Update);

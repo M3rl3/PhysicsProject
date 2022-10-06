@@ -23,9 +23,9 @@ Vector3::Vector3(float x, float y, float z) /*: x(x), y(y), z(z)*/ {
 
 //Copy Constructor
 Vector3::Vector3(const Vector3& ass) {
-    x = ass.x;
-    y = ass.y;
-    z = ass.z;
+    this->x = ass.x;
+    this->y = ass.y;
+    this->z = ass.z;
 }
 
 //Destructor
@@ -68,12 +68,6 @@ std::ostream& operator<<(std::ostream& out, Vector3& v1) {
     return out;
 }
 
-//void Vector3::operator*=(float& ass) {
-//    x *= ass;
-//    y *= ass;
-//    z *= ass;
-//}
-
 //Adds current vector to a scaled vector
 void Vector3::scalevector(Vector3& ass, float scalar) {
     *this = *this + ass * scalar;
@@ -103,5 +97,4 @@ void Vector3::normal() {
     x = x / result;
     y = y / result;
     z = z / result;
-
 }

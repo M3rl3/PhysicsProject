@@ -8,23 +8,20 @@
 #include "Tank.h"
 #include "ParticleAccelerator.h"
 
+
 class Graphics {
-	
-	ParticleAccelerator* pa;
+		
 	Vector3 pos;
 	Vector3 pos1;
 	Vector3 pos2;
 	Vector3 target_crosshair;
 	Vector3 temp;
 	Tank_Ammo tank_ammo;
+	Tank_Ammo sphere;
 	gdp::GameObject* player_tank;
 	gdp::GameObject* enemy_tank;
 	gdp::GameObject* plane;
-	/*bool grounded;
-	bool gameOver;
-	bool fire;*/
-
-	//std::vector < ParticleAccelerator > yes;
+	ParticleAccelerator* pa;
 
 public:
 	Graphics();

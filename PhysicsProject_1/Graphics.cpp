@@ -2,7 +2,7 @@
 #include "Tank.h"
 
 Graphics::Graphics() :pos(Vector3(10.f, 1.f, 10.f)) {
-	/*tank_ammo.part = new Particle(pos);*/
+
 }
 
 Graphics::~Graphics() {
@@ -41,8 +41,6 @@ void Graphics::Initialize() {
 	unsigned int mat_id_ammo = 2;
 	gdp::GDP_CreateMaterial(mat_id_ammo, texture_id_ammo, glm::vec3(0, 0, 0));
 	
-	//for (int i = 0; i < 2; i++) { tank_ammo.part = pa->InitParticle(Vector3(10.f, 1.f, 10.f)); }
-	//tank_ammo.part = pa.InitParticle(Vector3(10.f, 1.f, 10.f));
 	tank_ammo.game_object = gdp::GDP_CreateGameObject();
 	tank_ammo.game_object->Renderer.ShaderId = 2;
 	tank_ammo.game_object->Renderer.MeshId = model_id_ammo;
@@ -67,7 +65,6 @@ void Graphics::Initialize() {
 	player_tank->Renderer.ShaderId = 3;
 	player_tank->Scale = glm::vec3(1, 1, 1);
 	player_tank->Position = glm::vec3(10, 0, 10);
-	//player_tank.player->Rotation = glm::vec3(0, 90, 0);
 
 
 	//Enemy Tank	
@@ -80,7 +77,6 @@ void Graphics::Initialize() {
 	enemy_tank->Renderer.ShaderId = 4;
 	enemy_tank->Scale = glm::vec3(1, 1, 1);
 	enemy_tank->Position = glm::vec3(-10, 0, -10);
-	//enemy_tank.enemy->Rotation = glm::vec3(0, 90, 0);
 	
 	GameBegin();
 }
@@ -91,22 +87,6 @@ void Graphics::Update() {
 	if (gdp::GDP_IsKeyPressed('n')) {
 		AssignRand(player_tank);
 		AssignRand(enemy_tank);
-
-		//Vector3 pos1 = Vector3(player_tank->Position.x, player_tank->Position.y, player_tank->Position.z);
-		//pos2 = Vector3(enemy_tank->Position.x, enemy_tank->Position.y, enemy_tank->Position.z);
-
-		////tank_ammo.part->velocity = Vector3(-1, 1, -1);
-		//tank_ammo.part->position = pos1;
-		//tank_ammo.game_object->Position = glm::vec3(pos1.x, pos1.y, pos1.z);
-		
-		//pos1 = Vector3(player_tank->Position.x, player_tank->Position.y, player_tank->Position.z);
-		///*ParticleAccelerator parAcc;
-		//tank_ammo.part = new Particle(pos1);
-		//
-		//tank_ammo.part = parAcc.InitParticle(pos1);*/
-		////yes.push_back(parAcc);
-		//tank_ammo.part->position = pos1;
-		//tank_ammo.game_object->Position = glm::vec3(pos1.x, pos1.y, pos1.z);
 	
 		GameBegin();
 
@@ -118,10 +98,7 @@ void Graphics::Update() {
 	
 	//Fire
 	if (gdp::GDP_IsKeyHeldDown('f')) {
-		//grounded = false;
-		//fire = true;
 		TankFire();
-
 	}
 
 	//Change firing direction
@@ -146,28 +123,28 @@ void Graphics::Update() {
 
 	//Change firing velocity
 	if (gdp::GDP_IsKeyPressed('1')) {
-		target_crosshair = Vector3(1.f, 1.f, 1.f);
+		
 		std::cout << "\nVelocity set to: " << tank_ammo.part->velocity;
 	}
 	if (gdp::GDP_IsKeyPressed('2')) {
-		tank_ammo.part->velocity = target_crosshair * 2;
+		target_crosshair = target_crosshair * 2;
 		std::cout << "\nVelocity set to: " << tank_ammo.part->velocity;
 	}
 	if (gdp::GDP_IsKeyPressed('3')) {
-		tank_ammo.part->velocity = target_crosshair * 3;
+		target_crosshair = target_crosshair * 3;
 		std::cout << "\nVelocity set to: " << tank_ammo.part->velocity;
 	}
 	if (gdp::GDP_IsKeyPressed('4')) {
-		tank_ammo.part->velocity = target_crosshair * 4;
+		target_crosshair = target_crosshair * 4;
 		std::cout << "\nVelocity set to: " << tank_ammo.part->velocity;
 	}
 	if (gdp::GDP_IsKeyPressed('5')) {
-		tank_ammo.part->velocity = target_crosshair * 5;
+		target_crosshair = target_crosshair * 5;
 		std::cout << "\nVelocity set to: " << tank_ammo.part->velocity;
 	}
-
 }
 
+//Setting up inital values
 void Graphics::GameBegin() {
 	
 	pos1 = Vector3(player_tank->Position.x, player_tank->Position.y, player_tank->Position.z);
@@ -183,16 +160,11 @@ void Graphics::GameBegin() {
 	target_crosshair = tank_ammo.part->velocity;
 	
 	std::cout << "\nInitial Velocity: " << target_crosshair;
-	//gameOver = false;
-	//fire = false;
 }
 
+//Fire the tank's cannons
 void Graphics::TankFire() {
 	if (tank_ammo.part->position.y >= 0) {
-		/*if (fire)
-			std::cout << "yesnt";
-			return;
-		fire = true;*/
 
 		tank_ammo.part->velocity = target_crosshair * 6.0f;
 		tank_ammo.game_object->Position = player_tank->Position;
@@ -201,18 +173,16 @@ void Graphics::TankFire() {
 		pos = tank_ammo.part->GetPosition();
 		tank_ammo.game_object->Position = glm::vec3(pos.x, pos.y, pos.z);
 		
-		//grounded = true;
 		if (tank_ammo.part->position.y <= 0) {
-			//fire = false;
-			
+	
 			CheckDist(enemy_tank, tank_ammo.part);
 			GameBegin();
 		}
 	}
 }
 
+//Targeting Adjustment
 void Graphics::Target(float x, float y, float z) {
-	//target_crosshair = tank_ammo.part->velocity;
 	
 	target_crosshair = target_crosshair + (Vector3(x, y, z) * 0.01f);
 
@@ -240,7 +210,6 @@ void Graphics::CheckDist(gdp::GameObject* enemy, Particle* p) {
 	
 	if (dist_tar < 2.f) {
 		std::cout << "\nBullseye! " << std::endl;
-		//gameOver = true;
 	}
 	else {
 		std::cout << "\nMissed by " << dist_tar << " meters." << std::endl;
