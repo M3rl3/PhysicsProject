@@ -16,7 +16,6 @@ Particle* ParticleAccelerator::InitParticle(const Vector3& position) {
 		Particle* part = new Particle(position);
 		part->position = position;
 		part->velocity = Vector3(-1.f, 1.f, -1.f);
-		//part->acceleration = Vector3(0.f, -9.8f, 0.f); //acceleration due to gravity
 		part->mass = 1.f;
 
 		particles.push_back(part);

@@ -10,7 +10,7 @@
 
 class Graphics {
 	
-	ParticleAccelerator pa;
+	ParticleAccelerator* pa;
 	Vector3 pos;
 	Vector3 pos1;
 	Vector3 pos2;
